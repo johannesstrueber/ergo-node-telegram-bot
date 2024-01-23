@@ -24,7 +24,8 @@ const chatInfoMessage = (chatId: number) => {
     // github api for version
     const gitUrl: string = "https://api.github.com/repos/ergoplatform/ergo/releases";
 
-    const nodeRequest = axios.get(nodeUrl);
+    // avoid cors
+    const nodeRequest = axios.get(nodeUrl, { headers: { "Access-Control-Allow-Origin": "*" } });
     const gitRequest = axios.get(gitUrl);
 
     axios.all([nodeRequest, gitRequest]).then(
